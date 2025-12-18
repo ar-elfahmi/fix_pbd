@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2025 at 07:14 AM
+-- Generation Time: Dec 18, 2025 at 02:50 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fix_pbd`
+-- Database: `coba`
 --
 
 DELIMITER $$
@@ -210,20 +210,13 @@ INSERT INTO `barang` (`idbarang`, `jenis`, `nama`, `idsatuan`, `status`, `harga`
 --
 
 CREATE TABLE `detail_penerimaan` (
-  `iddetail_penerimaan` INT NOT NULL,
-  `idpenerimaan` INT DEFAULT NULL,
+  `iddetail_penerimaan` int NOT NULL,
+  `idpenerimaan` int DEFAULT NULL,
   `idbarang` int DEFAULT NULL,
   `jumlah_terima` int DEFAULT NULL,
   `harga_satuan_terima` int DEFAULT NULL,
   `sub_total_terima` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `detail_penerimaan`
---
-
-INSERT INTO `detail_penerimaan` (`iddetail_penerimaan`, `idpenerimaan`, `idbarang`, `jumlah_terima`, `harga_satuan_terima`, `sub_total_terima`) VALUES
-(6, 3, 4, 20, 5000, 111000);
 
 --
 -- Triggers `detail_penerimaan`
@@ -447,20 +440,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `detail_pengadaan` (
-  `iddetail_pengadaan` INT NOT NULL,
+  `iddetail_pengadaan` int NOT NULL,
   `harga_satuan` int DEFAULT NULL,
   `jumlah` int DEFAULT NULL,
   `sub_total` int DEFAULT NULL,
   `idbarang` int DEFAULT NULL,
-  `idpengadaan` INT DEFAULT NULL
+  `idpengadaan` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `detail_pengadaan`
---
-
-INSERT INTO `detail_pengadaan` (`iddetail_pengadaan`, `harga_satuan`, `jumlah`, `sub_total`, `idbarang`, `idpengadaan`) VALUES
-(3, 5000, 100, 500000, 4, 5);
 
 --
 -- Triggers `detail_pengadaan`
@@ -534,7 +520,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `detail_penjualan` (
-  `iddetail_penjualan` INT NOT NULL,
+  `iddetail_penjualan` int NOT NULL,
   `harga_satuan` int DEFAULT NULL,
   `jumlah` int DEFAULT NULL,
   `subtotal` int DEFAULT NULL,
@@ -719,8 +705,8 @@ CREATE TABLE `detail_retur` (
   `iddetail_retur` int NOT NULL,
   `jumlah` int DEFAULT NULL,
   `alasan` varchar(200) DEFAULT NULL,
-  `idretur` INT DEFAULT NULL,
-  `iddetail_penerimaan` INT DEFAULT NULL
+  `idretur` int DEFAULT NULL,
+  `iddetail_penerimaan` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -730,7 +716,7 @@ CREATE TABLE `detail_retur` (
 --
 
 CREATE TABLE `kartu_stok` (
-  `idkartu_stok` INT NOT NULL,
+  `idkartu_stok` int NOT NULL,
   `jenis_transaksi` char(1) DEFAULT NULL,
   `masuk` int DEFAULT NULL,
   `keluar` int DEFAULT NULL,
@@ -739,33 +725,6 @@ CREATE TABLE `kartu_stok` (
   `idtransaksi` int DEFAULT NULL,
   `idbarang` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `kartu_stok`
---
-
-INSERT INTO `kartu_stok` (`idkartu_stok`, `jenis_transaksi`, `masuk`, `keluar`, `stock`, `created_at`, `idtransaksi`, `idbarang`) VALUES
-(1, 'P', 50, 0, 50, '2025-12-01 10:29:49', 1, 6),
-(2, 'P', 0, 50, 0, '2025-12-01 10:32:12', 1, 6),
-(3, 'P', 100, 0, 100, '2025-12-01 10:32:12', 1, 6),
-(4, 'P', 10, 0, 10, '2025-12-01 10:34:33', 2, 1),
-(5, 'P', 0, 10, 0, '2025-12-01 11:45:30', 2, 1),
-(6, 'P', 9, 0, 9, '2025-12-01 11:45:50', 3, 1),
-(7, 'P', 1, 0, 10, '2025-12-01 11:46:34', 4, 1),
-(8, 'J', 0, 10, 90, '2025-12-01 11:52:20', 1, 6),
-(9, 'J', 0, 5, 5, '2025-12-01 11:52:29', 2, 1),
-(10, 'P', 0, 1, 4, '2025-12-01 12:16:29', 4, 1),
-(11, 'P', 1, 0, 5, '2025-12-01 12:17:00', 5, 1),
-(12, 'P', 0, 1, 4, '2025-12-01 12:19:00', 5, 1),
-(13, 'P', 0, 9, -5, '2025-12-01 12:21:47', 3, 1),
-(14, 'P', 10, 0, 5, '2025-12-01 12:21:47', 3, 1),
-(15, 'P', 0, 10, -5, '2025-12-01 12:25:01', 3, 1),
-(16, 'P', 0, 100, -10, '2025-12-01 12:25:06', 1, 6),
-(17, 'J', 10, 0, 0, '2025-12-01 12:25:13', 1, 6),
-(18, 'J', 5, 0, 0, '2025-12-01 12:25:15', 2, 1),
-(19, 'P', 10, 0, 10, '2025-12-01 12:46:25', 6, 4),
-(20, 'P', 0, 10, 0, '2025-12-01 12:46:59', 6, 4),
-(21, 'P', 20, 0, 20, '2025-12-01 12:46:59', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -800,19 +759,12 @@ INSERT INTO `margin_penjualan` (`idmargin_penjualan`, `created_at`, `persen`, `s
 --
 
 CREATE TABLE `penerimaan` (
-  `idpenerimaan` INT NOT NULL,
+  `idpenerimaan` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` char(1) DEFAULT NULL,
-  `idpengadaan` INT DEFAULT NULL,
+  `idpengadaan` int DEFAULT NULL,
   `iduser` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `penerimaan`
---
-
-INSERT INTO `penerimaan` (`idpenerimaan`, `created_at`, `status`, `idpengadaan`, `iduser`) VALUES
-(3, '2025-12-01 12:45:50', 'N', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -821,7 +773,7 @@ INSERT INTO `penerimaan` (`idpenerimaan`, `created_at`, `status`, `idpengadaan`,
 --
 
 CREATE TABLE `pengadaan` (
-  `idpengadaan` INT NOT NULL,
+  `idpengadaan` int NOT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `user_iduser` int DEFAULT NULL,
   `status` char(1) DEFAULT NULL,
@@ -830,17 +782,6 @@ CREATE TABLE `pengadaan` (
   `ppn` int DEFAULT NULL,
   `total_nilai` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `pengadaan`
---
-
-INSERT INTO `pengadaan` (`idpengadaan`, `timestamp`, `user_iduser`, `status`, `vendor_idvendor`, `subtotal_nilai`, `ppn`, `total_nilai`) VALUES
-(1, '2025-10-01 08:00:00', 1, 'A', 1, 0, 11, 0),
-(2, '2025-10-01 09:30:00', 2, 'A', 2, 0, 11, 0),
-(3, '2025-10-01 11:15:00', 3, 'N', 3, 0, 11, 0),
-(4, '2025-10-01 14:20:00', 4, 'A', 4, 0, 11, 0),
-(5, '2025-10-01 16:45:00', 5, 'A', 5, 500000, 11, 555000);
 
 --
 -- Triggers `pengadaan`
@@ -923,9 +864,9 @@ DELIMITER ;
 --
 
 CREATE TABLE `retur` (
-  `idretur` INT NOT NULL,
+  `idretur` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `idpenerimaan` INT DEFAULT NULL,
+  `idpenerimaan` int DEFAULT NULL,
   `iduser` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -1046,12 +987,12 @@ DELIMITER ;
 -- (See below for the actual view)
 --
 CREATE TABLE `view_barang` (
-`idbarang` int
+`harga` int
+,`idbarang` int
 ,`jenis` char(1)
 ,`nama` varchar(45)
 ,`nama_satuan` varchar(45)
 ,`status` tinyint
-,`harga` int
 );
 
 -- --------------------------------------------------------
@@ -1061,12 +1002,12 @@ CREATE TABLE `view_barang` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_barang_all` (
-`idbarang` int
+`harga` int
+,`idbarang` int
 ,`jenis` char(1)
 ,`nama` varchar(45)
 ,`nama_satuan` varchar(45)
 ,`status` tinyint
-,`harga` int
 );
 
 -- --------------------------------------------------------
@@ -1076,11 +1017,11 @@ CREATE TABLE `view_barang_all` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_detail_penerimaan` (
-`iddetail_penerimaan` INT
-,`idpenerimaan` INT
-,`nama_barang` varchar(45)
+`harga_satuan_terima` int
+,`iddetail_penerimaan` int
+,`idpenerimaan` int
 ,`jumlah_terima` int
-,`harga_satuan_terima` int
+,`nama_barang` varchar(45)
 ,`sub_total_terima` int
 ,`tanggal_penerimaan` timestamp
 );
@@ -1092,13 +1033,13 @@ CREATE TABLE `view_detail_penerimaan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_detail_pengadaan` (
-`iddetail_pengadaan` INT
-,`idpengadaan` INT
-,`nama_barang` varchar(45)
-,`harga_satuan` int
+`harga_satuan` int
+,`iddetail_pengadaan` int
+,`idpengadaan` int
 ,`jumlah` int
-,`sub_total` int
+,`nama_barang` varchar(45)
 ,`nama_vendor` varchar(100)
+,`sub_total` int
 ,`tanggal_pengadaan` timestamp
 );
 
@@ -1109,14 +1050,14 @@ CREATE TABLE `view_detail_pengadaan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_detail_penjualan` (
-`iddetail_penjualan` INT
+`harga_satuan` int
+,`iddetail_penjualan` int
 ,`idpenjualan` int
-,`nama_barang` varchar(45)
-,`harga_satuan` int
 ,`jumlah` int
+,`kasir` varchar(45)
+,`nama_barang` varchar(45)
 ,`subtotal` int
 ,`tanggal_penjualan` timestamp
-,`kasir` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -1126,11 +1067,11 @@ CREATE TABLE `view_detail_penjualan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_detail_retur` (
-`iddetail_retur` int
-,`idretur` INT
-,`nama_barang` varchar(45)
+`alasan` varchar(200)
+,`iddetail_retur` int
+,`idretur` int
 ,`jumlah` int
-,`alasan` varchar(200)
+,`nama_barang` varchar(45)
 ,`tanggal_penerimaan` timestamp
 ,`tanggal_retur` timestamp
 );
@@ -1142,14 +1083,14 @@ CREATE TABLE `view_detail_retur` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_kartu_stok` (
-`idkartu_stok` INT
-,`nama_barang` varchar(45)
-,`jenis_transaksi` char(1)
-,`masuk` int
-,`keluar` int
-,`stock` int
-,`created_at` timestamp
+`created_at` timestamp
+,`idkartu_stok` int
 ,`idtransaksi` int
+,`jenis_transaksi` char(1)
+,`keluar` int
+,`masuk` int
+,`nama_barang` varchar(45)
+,`stock` int
 );
 
 -- --------------------------------------------------------
@@ -1159,10 +1100,10 @@ CREATE TABLE `view_kartu_stok` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_margin_penjualan` (
-`idmargin_penjualan` int
+`created_at` timestamp
+,`idmargin_penjualan` int
 ,`persen` double
 ,`status` tinyint
-,`created_at` timestamp
 ,`updated_at` timestamp
 ,`username` varchar(45)
 );
@@ -1174,10 +1115,10 @@ CREATE TABLE `view_margin_penjualan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_margin_penjualan_all` (
-`idmargin_penjualan` int
+`created_at` timestamp
+,`idmargin_penjualan` int
 ,`persen` double
 ,`status` tinyint
-,`created_at` timestamp
 ,`updated_at` timestamp
 ,`username` varchar(45)
 );
@@ -1189,12 +1130,12 @@ CREATE TABLE `view_margin_penjualan_all` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_penerimaan` (
-`idpenerimaan` INT
-,`created_at` timestamp
-,`status` char(1)
-,`idpengadaan` INT
+`created_at` timestamp
+,`idpenerimaan` int
+,`idpengadaan` int
 ,`nama_vendor` varchar(100)
 ,`penerima` varchar(45)
+,`status` char(1)
 );
 
 -- --------------------------------------------------------
@@ -1204,14 +1145,14 @@ CREATE TABLE `view_penerimaan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_pengadaan` (
-`idpengadaan` INT
-,`timestamp` timestamp
-,`subtotal_nilai` int
-,`ppn` int
-,`total_nilai` int
-,`status` char(1)
+`idpengadaan` int
 ,`nama_vendor` varchar(100)
 ,`pembuat` varchar(45)
+,`ppn` int
+,`status` char(1)
+,`subtotal_nilai` int
+,`timestamp` timestamp
+,`total_nilai` int
 );
 
 -- --------------------------------------------------------
@@ -1221,14 +1162,14 @@ CREATE TABLE `view_pengadaan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_pengadaan_all` (
-`idpengadaan` INT
-,`timestamp` timestamp
-,`subtotal_nilai` int
-,`ppn` int
-,`total_nilai` int
-,`status` char(1)
+`idpengadaan` int
 ,`nama_vendor` varchar(100)
 ,`pembuat` varchar(45)
+,`ppn` int
+,`status` char(1)
+,`subtotal_nilai` int
+,`timestamp` timestamp
+,`total_nilai` int
 );
 
 -- --------------------------------------------------------
@@ -1238,13 +1179,13 @@ CREATE TABLE `view_pengadaan_all` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_penjualan` (
-`idpenjualan` int
-,`created_at` timestamp
-,`subtotal_nilai` int
-,`ppn` int
-,`total_nilai` int
+`created_at` timestamp
+,`idpenjualan` int
 ,`kasir` varchar(45)
 ,`margin_persen` double
+,`ppn` int
+,`subtotal_nilai` int
+,`total_nilai` int
 );
 
 -- --------------------------------------------------------
@@ -1254,11 +1195,11 @@ CREATE TABLE `view_penjualan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_retur` (
-`idretur` INT
-,`tanggal_retur` timestamp
-,`idpenerimaan` INT
-,`tanggal_penerimaan` timestamp
+`idpenerimaan` int
+,`idretur` int
 ,`pengembali` varchar(45)
+,`tanggal_penerimaan` timestamp
+,`tanggal_retur` timestamp
 );
 
 -- --------------------------------------------------------
@@ -1303,11 +1244,11 @@ CREATE TABLE `view_satuan_all` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_sisa_penerimaan` (
-`idpengadaan` INT
-,`idbarang` int
-,`nama_barang` varchar(45)
+`idbarang` int
+,`idpengadaan` int
 ,`jumlah_pengadaan` int
 ,`jumlah_terima` decimal(32,0)
+,`nama_barang` varchar(45)
 ,`sisa_penerimaan` decimal(33,0)
 );
 
@@ -1318,11 +1259,11 @@ CREATE TABLE `view_sisa_penerimaan` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_status_penerimaan` (
-`idpengadaan` INT
-,`idbarang` int
-,`nama_barang` varchar(45)
+`idbarang` int
+,`idpengadaan` int
 ,`jumlah_pengadaan` int
 ,`jumlah_terima` decimal(32,0)
+,`nama_barang` varchar(45)
 ,`sisa_penerimaan` decimal(33,0)
 );
 
@@ -1334,8 +1275,8 @@ CREATE TABLE `view_status_penerimaan` (
 --
 CREATE TABLE `view_user` (
 `iduser` int
-,`username` varchar(45)
 ,`nama_role` varchar(100)
+,`username` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -1345,9 +1286,9 @@ CREATE TABLE `view_user` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_vendor` (
-`idvendor` int
+`badan_hukum` char(1)
+,`idvendor` int
 ,`nama_vendor` varchar(100)
-,`badan_hukum` char(1)
 ,`status` char(1)
 );
 
@@ -1358,9 +1299,9 @@ CREATE TABLE `view_vendor` (
 -- (See below for the actual view)
 --
 CREATE TABLE `view_vendor_all` (
-`idvendor` int
+`badan_hukum` char(1)
+,`idvendor` int
 ,`nama_vendor` varchar(100)
-,`badan_hukum` char(1)
 ,`status` char(1)
 );
 
@@ -1492,19 +1433,19 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `detail_penerimaan`
 --
 ALTER TABLE `detail_penerimaan`
-  MODIFY `iddetail_penerimaan` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetail_penerimaan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `detail_pengadaan`
 --
 ALTER TABLE `detail_pengadaan`
-  MODIFY `iddetail_pengadaan` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iddetail_pengadaan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `iddetail_penjualan` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddetail_penjualan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `detail_retur`
@@ -1516,7 +1457,7 @@ ALTER TABLE `detail_retur`
 -- AUTO_INCREMENT for table `kartu_stok`
 --
 ALTER TABLE `kartu_stok`
-  MODIFY `idkartu_stok` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idkartu_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `margin_penjualan`
@@ -1528,13 +1469,13 @@ ALTER TABLE `margin_penjualan`
 -- AUTO_INCREMENT for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
-  MODIFY `idpenerimaan` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idpenerimaan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengadaan`
 --
 ALTER TABLE `pengadaan`
-  MODIFY `idpengadaan` INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idpengadaan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `penjualan`
@@ -1546,7 +1487,7 @@ ALTER TABLE `penjualan`
 -- AUTO_INCREMENT for table `retur`
 --
 ALTER TABLE `retur`
-  MODIFY `idretur` INT NOT NULL AUTO_INCREMENT;
+  MODIFY `idretur` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
